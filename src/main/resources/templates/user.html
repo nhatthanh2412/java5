@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Manage User</title>
+</head>
+<body>
+	<form action="#" th:action="@{/user}" th:object="${users}" method="post" >
+		<label>Username</label><br/>
+		<input type="text" th:field="*{username}"/><br/>
+		<label>Password</label><br/>
+		<input type="text" th:field="*{password}"/><br/>
+		<label>Fullname</label><br/>
+		<input type="text" th:field="*{fullname}"/>
+		<br/>
+		<button type="submit" name="add">Add</button>
+		<button type="submit" name="update">Update</button>
+		<button type="submit" name="delete">Delete</button>
+	</form>
+	<hr>
+	<table border="1" cellpadding="10"z>
+		<tr>
+			<th>Username</th>
+			<th>Password</th>
+			<th>Fullname</th>
+		</tr>
+		<tr th:each="a : ${list_user}">
+			<td th:text="${a.username}"></td>
+			<td th:text="${a.password}"></td>
+			<td th:text="${a.fullname}"></td>
+			<td ><a th:href="@{'/user_edit' + ${a.username}}">Edit</a></td>
+			<td ><a th:href="@{'/user_delete' + ${a.username}}">Delete</a></td>
+		</tr>
+	</table>
+</body>
+</html>

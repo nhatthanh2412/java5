@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Manage User</title>
+</head>
+<body>
+	<h1>Thống kê tích kỹ luật theo nhân viên</h1>
+	<table border="1" cellpadding="10">
+		<tr>
+			<th>Nhan vien</th>
+			<th>Thanh tich</th>
+			<th>Ky luat</th>
+		</tr>
+		<tr th:each="a : ${list_canhan}">
+			<td th:text="${a[0]}"></td>
+			<td th:text="${a[1]}"></td>
+			<td th:text="${a[2]}"></td>
+		</tr>
+	</table>
+	<hr>
+	<h1>Thống kê tích kỹ luật theo phòng ban</h1>
+	<table border="1" cellpadding="10">
+		<tr>
+			<th>Phòng</th>
+			<th>Thanh tich</th>
+			<th>Ky luat</th>
+		</tr>
+		<tr th:each="a : ${list_phongban}">
+			<td th:text="${a[0]}"></td>
+			<td th:text="${a[1]}"></td>
+			<td th:text="${a[2]}"></td>
+		</tr>
+	</table>
+</body>
+</html>

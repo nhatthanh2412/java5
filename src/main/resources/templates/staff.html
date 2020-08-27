@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Manage User</title>
+</head>
+<body>
+		
+	<form action="#" th:action="@{/staff}" enctype="multipart/form-data" th:object="${staffs}" method="post" >
+		<img alt="" style="height: 200px;width: 150px" th:src="@{'getimage/'+${staffs.photo}}" />
+		<input type="file" name="file"/>
+		<button name="app">Apply</button><br/>
+		
+		<label>ID</label><br/>
+		<input type="text" th:field="*{id}"/><br/>
+		<label>Name</label><br/>
+		<input type="text" th:field="*{name}"/><br/>
+		<label>Gender</label><br/>
+		<input type="radio" th:field="*{gender}" value="1"/><label>Nam</label>
+		<input type="radio" th:field="*{gender}" value="0"/><label>Nữ</label>
+		<br/>
+		<label>Birthday</label><br/>
+		<input type="text" th:field="*{birthday}"/><br/>
+		<label>Photo</label><br/>
+		<input type="text" th:field="*{photo}"  /> <br/>
+		<label>Email</label><br/>
+		<input type="text" th:field="*{email}"/><br/>
+		<label>Phone</label><br/>
+		<input type="text" th:field="*{phone}"/><br/>
+		<label>Salary</label><br/>
+		<input type="text" th:field="*{salary}"/><br/>
+		<label>Note</label><br/>
+		<input type="text" th:field="*{notes}"/><br/>
+		<label>Depart</label><br/>
+		<select th:field="*{departs}">
+			<option th:each="i : ${list_depart}" th:value="${i.id}" th:text="${i.name}"></option>
+		</select>
+		<br/>
+		<br/>
+		<button type="submit" name="add">Add</button>
+		<button type="submit" name="update">Update</button>
+		<button type="submit" name="delete">Delete</button>
+	</form>
+	<hr>
+	<table border="1" cellpadding="10">
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+			<th>Gender</th>
+			<th>Birthday</th>
+			<th>Photo</th>
+			<th>Email</th>
+			<th>Phone</th>
+			<th>Salary</th>
+			<th>Note</th>
+			<th>Depart</th>
+		</tr>
+		<tr th:each="a : ${list_staff}">
+			<td th:text="${a.id}"></td>
+			<td th:text="${a.name}"></td>
+			<td th:if="${a.gender}== true">Nam</td>
+			<td th:if="${a.gender}== false">Nu</td>
+			<td th:text="${#dates.format(a.birthday,'dd/MM/yyyy')}"></td>
+			<td th:text="${a.photo}"></td>
+			<td th:text="${a.email}"></td>
+			<td th:text="${a.phone}"></td>
+			<td th:text="${a.salary}"></td>
+			<td th:text="${a.notes}"></td>
+			<td th:text="${a.departs.name}"></td>
+			<td ><a th:href="@{'/staff_edit' + ${a.id}}">Edit</a></td>
+			<td ><a th:href="@{'/staff_delete' + ${a.id}}">Delete</a></td>
+		</tr>
+	</table>
+</body>
+</html>

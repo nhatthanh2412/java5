@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Manage User</title>
+</head>
+<body>
+	<form action="#" th:action="@{/depart}" th:object="${departs}" method="post" >
+		<label>ID</label><br/>
+		<input type="text" th:field="*{id}"/><br/>
+		<label>Name</label><br/>
+		<input type="text" th:field="*{name}"/><br/>
+		<br/>
+		<button type="submit" name="add">Add</button>
+		<button type="submit" name="update">Update</button>
+		<button type="submit" name="delete">Delete</button>
+	</form>
+	<hr>
+	<table border="1" cellpadding="10"z>
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+		</tr>
+		<tr th:each="a : ${list_depart}">
+			<td th:text="${a.id}"></td>
+			<td th:text="${a.name}"></td>
+			<td ><a th:href="@{'/depart_edit' + ${a.id}}">Edit</a></td>
+			<td ><a th:href="@{'/depart_delete' + ${a.id}}">Delete</a></td>
+		</tr>
+	</table>
+</body>
+</html>

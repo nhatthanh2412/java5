@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Manage User</title>
+</head>
+<body>
+	<form action="#" th:action="@{/record}" th:object="${records}" method="post">
+		<input type="hidden" th:field="*{id}">
+		<select th:field="*{staffid}">
+			<option th:each="i : ${list_staff}" th:value="${i.id}" th:text="${i.name}"></option>
+		</select> 
+		<br/>
+		<label>Type</label><br /> 
+		<input type="radio" th:field="*{type}" value="1" /><label>Thanh tich</label> 
+		<input type="radio" th:field="*{type}" value="0" /><label>Ky luat</label><br /> 
+		<label>Reason</label><br />
+		<input type="text" th:field="*{reason}" /><br /> <br />
+
+		<button type="submit" name="add">Add</button>
+		<button type="submit" name="update">Update</button>
+		<button type="submit" name="delete">Delete</button>
+	</form>
+	<hr>
+	<table border="1" cellpadding="10" z>
+		<tr>
+			<th>ID</th>
+			<th>Staff</th>
+			<th>Type</th>
+			<th>Reason</th>
+		</tr>
+		<tr th:each="a : ${list_record}">
+			<td th:text="${a.id}"></td>
+			<td th:text="${a.staffid.name}"></td>
+			<td th:if="${a.type}== 1">Thanh tich</td>
+			<td th:if="${a.type}== 0">Ky luat</td>
+			<td th:text="${a.reason}"></td>
+			<td><a th:href="@{'/record_edit' + ${a.id}}">Edit</a></td>
+			<td><a th:href="@{'/record_delete' + ${a.id}}">Delete</a></td>
+		</tr>
+	</table>
+</body>
+</html>
